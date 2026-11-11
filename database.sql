@@ -26,8 +26,10 @@ CREATE TABLE IF NOT EXISTS citas (
   FOREIGN KEY (paciente_id) REFERENCES pacientes(id) ON DELETE CASCADE
 );
 
--- Usuarios iniciales (password: 123 para todos)
-INSERT INTO usuarios (usuario, password, nombre, rol) VALUES
-('admin123', '$2y$10$e0MYzXyjpJS7Pd0RVvHwHe1HlCS4bZJ18JuywdBEmVUlq0IZlA0Vy', 'Super Administrador', 'superadmin'),
-('recepcion', '$2y$10$e0MYzXyjpJS7Pd0RVvHwHe1HlCS4bZJ18JuywdBEmVUlq0IZlA0Vy', 'Recepción', 'admin'),
-('consulta', '$2y$10$e0MYzXyjpJS7Pd0RVvHwHe1HlCS4bZJ18JuywdBEmVUlq0IZlA0Vy', 'Usuario de Consulta', 'usuario');
+-- NOTA: no insertamos usuarios aquí porque las contraseñas deben hashearse
+-- con password_hash() desde PHP. Después de importar este archivo,
+-- abre instalar.php en el navegador UNA VEZ para crear los usuarios:
+--   admin123 / 123  -> superadmin
+--   recepcion / 123 -> admin
+--   consulta / 123  -> usuario
+-- Luego borra instalar.php del servidor.
